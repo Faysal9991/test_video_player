@@ -3,7 +3,7 @@
 class AppConstant {
   // API BASE URL
 
-  static const String baseUrl = 'https://test-ximit.mahfil.net/api';
+  static const String baseUrl = 'https://test-ximit.mahfil.net/api/';
   static const String getVideo ="trending-video/1?";
 
   // Shared Key
