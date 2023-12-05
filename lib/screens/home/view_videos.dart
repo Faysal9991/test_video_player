@@ -64,6 +64,8 @@ class _ViewVideoScreenState extends State<ViewVideoScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("${provider.videoList[widget.videoIndex].title}",
                         style: Theme.of(context).textTheme.bodyMedium),
