@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: Helper.navigatorKey,
-      title: 'Flutter Demo',
       theme: AppTheme.getLightModeTheme(),
       home: const HomeScreen(),
     );

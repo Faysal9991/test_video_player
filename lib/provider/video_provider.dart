@@ -7,8 +7,8 @@ import 'package:flutter_test_2/data/repository/video_repo.dart';
 
 class VideoProvider with ChangeNotifier {
   final VideoRepo videoRepo;
-
   VideoProvider({required this.videoRepo});
+
 
   int position = 0;
   List<VideoModel> videoList = [];
@@ -19,11 +19,11 @@ class VideoProvider with ChangeNotifier {
 
   updatePageNo() {
     selectPage++;
-    initializeAllFeedData(page: selectPage);
+    initializeVideo(page: selectPage);
     notifyListeners();
   }
 
-  initializeAllFeedData({int page = 1, bool isFirstTime = true}) async {
+  initializeVideo({int page = 1, bool isFirstTime = true}) async {
     if (page == 1) {
       selectPage = 1;
       videoList.clear();
@@ -44,14 +44,18 @@ class VideoProvider with ChangeNotifier {
     isLoading = false;
     isBottomLoading = false;
     if (response.response.statusCode == 200) {
-      hasNextData = response.response.data['next'] != null ? true : false;
+      hasNextData = response.response.data['links']["next"]!= null ? true : false;
       response.response.data['results'].forEach((element) {
         videoList.add(VideoModel.fromJson(element));
+
       });
+      notifyListeners();
+
     } else {
-    
+
     }
     notifyListeners();
   }
+
 
 }
