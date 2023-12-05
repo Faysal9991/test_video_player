@@ -48,17 +48,7 @@ class AppTheme {
             fontSize: 8,
             color: LightColors.secondColorLight),
       ),
-      buttonTheme: ButtonThemeData(
-        buttonColor: LightColors.secondColorLight,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50),
-        ),
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-        backgroundColor:
-            MaterialStateProperty.all(LightColors.primaryColorLight),
-      )),
+
       colorScheme: ColorScheme.fromSeed(
           primary: LightColors.primaryColorLight,
           shadow: colorShadow,
