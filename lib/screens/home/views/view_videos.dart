@@ -49,7 +49,7 @@ class _ViewVideoScreenState extends State<ViewVideoScreen> {
           child: Column(
             children: [
               SizedBox(
-                  height: 200, child: Chewie(controller: _chewieController)),
+                  height: 250, child: Chewie(controller: _chewieController)),
               gap(hight: 10),
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
@@ -71,6 +71,8 @@ class _ViewVideoScreenState extends State<ViewVideoScreen> {
                     gap(hight: 10),
                     Row(
                       children: [
+                        gap(width: 10),
+
                         likeShareComponent(
                             context, "assets/svg/love.svg", "Mash Allah (12k)"),
                         gap(width: 10),
@@ -118,18 +120,21 @@ class _ViewVideoScreenState extends State<ViewVideoScreen> {
                                                 fontSize: 12,
                                                 color: Colors.grey))
                                   ])),
-                          Expanded(
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.blue),
-                                  onPressed: () {},
+                          Container(
+
+                              decoration:  BoxDecoration( borderRadius: BorderRadius.circular(5),color: Colors.blue),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
                                   child: Text("+Subscribe",
                                       style: Theme.of(context)
                                           .textTheme
                                           .displayMedium!
                                           .copyWith(
                                               color: Colors.white,
-                                              fontSize: 10))))
+                                              fontSize: 10)),
+                                ),
+                              ))
                         ]),
                     const Divider(),
                     Row(
