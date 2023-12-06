@@ -5,6 +5,7 @@ import 'package:flutter_test_2/component/cusom_text_field.dart';
 import 'package:flutter_test_2/component/custom_space.dart';
 import 'package:flutter_test_2/provider/video_provider.dart';
 import 'package:flutter_test_2/screens/home/widget/custom_avater.dart';
+import 'package:flutter_test_2/screens/home/widget/custom_video_placeholder.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
@@ -28,21 +29,13 @@ class _ViewVideoScreenState extends State<ViewVideoScreen> {
             Uri.parse(provider.videoList[widget.videoIndex].manifest!));
 
     _chewieController = ChewieController(
+
       autoInitialize: true,
       videoPlayerController: videoPlayerController,
-      aspectRatio: 16 / 9, // Adjust this based on your video's aspect ratio
-      autoPlay: true, // Set to true if you want the video to play automatically
-      looping: false, // Set to true if you want the video to loop
-      // Provide a thumbnail as a Widget
-      placeholder: Container(
-        height: 200,
-        width: double.infinity,
-        decoration: BoxDecoration(
-            color: Colors.grey,
-            image: DecorationImage(
-                image: NetworkImage(
-                    provider.videoList[widget.videoIndex].thumbnail!))),
-      ),
+      aspectRatio: 16 / 9,
+      autoPlay: true,
+      looping: false,
+      placeholder: CustomVideoPlaceHolder(imageUrl: provider.videoList[widget.videoIndex].thumbnail),
     );
   }
 
@@ -93,7 +86,7 @@ class _ViewVideoScreenState extends State<ViewVideoScreen> {
                             child: Column(
                               children: [
                                 SvgPicture.asset("assets/svg/love.svg",height: 24,width: 24,),
-                                Text("Mash Allah (12k)",style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Color(0xff718096)),)
+                                Text("Mash Allah (12k)",style: Theme.of(context).textTheme.displayMedium!.copyWith(color: const Color(0xff718096)),)
                               ],
                             ),
                           ),),
@@ -105,7 +98,7 @@ class _ViewVideoScreenState extends State<ViewVideoScreen> {
                             child: Column(
                               children: [
                                 SvgPicture.asset("assets/svg/like.svg",height: 24,width: 24,),
-                                Text("LIKE (12k)",style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Color(0xff718096)),)
+                                Text("LIKE (12k)",style: Theme.of(context).textTheme.displayMedium!.copyWith(color: const Color(0xff718096)),)
                               ],
                             ),
                           ),),
@@ -117,7 +110,7 @@ class _ViewVideoScreenState extends State<ViewVideoScreen> {
                             child: Column(
                               children: [
                                 SvgPicture.asset("assets/svg/share.svg",height: 24,width: 24,),
-                                Text("SHARE",style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Color(0xff718096)),)
+                                Text("SHARE",style: Theme.of(context).textTheme.displayMedium!.copyWith(color: const Color(0xff718096)),)
                               ],
                             ),
                           ),),
@@ -129,7 +122,7 @@ class _ViewVideoScreenState extends State<ViewVideoScreen> {
                             child: Column(
                               children: [
                                 SvgPicture.asset("assets/svg/love.svg",height: 24,width: 24,),
-                                Text("REPORT",style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Color(0xff718096)),)
+                                Text("REPORT",style: Theme.of(context).textTheme.displayMedium!.copyWith(color: const Color(0xff718096)),)
                               ],
                             ),
                           ),),
@@ -165,16 +158,16 @@ class _ViewVideoScreenState extends State<ViewVideoScreen> {
   )
                       ],
                     ),
-                    Divider(),
+                    const Divider(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Comments   7.5K",style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Color(0xff718096)),),
+                      Text("Comments   7.5K",style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: const Color(0xff718096)),),
                       SvgPicture.asset("assets/svg/updown.svg"),
                     ],
                     ),
                     gap(hight: 10),
-                    CustomTextField(
+                    const CustomTextField(
                       fillColor: Colors.white,
                       borderRadius: 2,
                       isIcon: true,
@@ -199,7 +192,7 @@ gap(hight: 10),
                             ),
                             Container(
                               width: MediaQuery.of(context).size.width*.7,
-                                child: Text("হুজুরের বক্তব্য গুলো ইংরেজি তে অনুবাদ করে সারা পৃথিবীর মানুষদের কে শুনিয়ে দিতে হবে। কথা গুলো খুব দামি",style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Color(0xff4A5568),fontWeight:FontWeight.w400,fontSize: 12),)),
+                                child: Text("হুজুরের বক্তব্য গুলো ইংরেজি তে অনুবাদ করে সারা পৃথিবীর মানুষদের কে শুনিয়ে দিতে হবে। কথা গুলো খুব দামি",style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: const Color(0xff4A5568),fontWeight:FontWeight.w400,fontSize: 12),)),
 
                           ],
                         )

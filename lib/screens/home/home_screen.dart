@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_2/component/custom_space.dart';
 import 'package:flutter_test_2/provider/video_provider.dart';
-import 'package:flutter_test_2/screens/home/view_videos.dart';
+import 'package:flutter_test_2/screens/home/widget/custom_video_placeholder.dart';
+import 'package:flutter_test_2/screens/home/views/view_videos.dart';
 import 'package:flutter_test_2/screens/home/widget/custom_avater.dart';
 import 'package:flutter_test_2/util/helper.dart';
 import 'package:intl/intl.dart';
@@ -61,10 +62,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       gap(hight: 16),
                       ListView.separated(
-                        padding:EdgeInsets.zero ,
-                        separatorBuilder: (context,index){
-                          return gap(hight: 10);
-                        },
+                          padding: EdgeInsets.zero,
+                          separatorBuilder: (context, index) {
+                            return gap(hight: 10);
+                          },
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: provider.videoList.length + 1,
@@ -82,86 +83,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ],
                                   ));
                             } else {
-                              return InkWell(
-                                onTap: (){
-                                  Helper.toScreen(ViewVideoScreen(videoIndex: index,));
+                              return CustomVideoPlaceHolder(
+                                onclick: () {
+                                  Helper.toScreen(ViewVideoScreen(
+                                    videoIndex: index,
+                                  ));
                                 },
-                                child: Container(
-                                  color: Colors.white,
-                                  child: Column(
-                                    children: [
-                                      Stack(
-                                        children: [
-                                          Container(
-                                            height: 200,
-                                            width: double.infinity,
-                                            decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                    image: NetworkImage(provider
-                                                        .videoList[index]
-                                                        .thumbnail!))),
-                                          ),
-                                          Positioned(
-                                              bottom: 20.0,
-                                              right: 20.0,
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: Colors.black,
-                                                    borderRadius:
-                                                        BorderRadius.circular(5)),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(4.0),
-                                                  child: Text(
-                                                    "${provider.videoList[index].duration}",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodySmall!
-                                                        .copyWith(
-                                                            color: Colors.white),
-                                                  ),
-                                                ),
-                                              ))
-                                        ],
-                                      ),
-                                      gap(hight: 16),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Expanded(
-
-                                            child: avatar(provider.videoList[index].channelImage!)
-                                          ),
-                                          Expanded(
-                                            flex:4,
-                                            child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text("${provider.videoList[index].title}"),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.start,
-                                                  children: [
-                                                    Text("${provider.videoList[index].viewers} views",style: const TextStyle(color: Colors.grey),),
-                                                    gap(width: 20),
-                                                    Text(DateFormat('MMM d, y').format(provider.videoList[index].dateAndTime!),style: const TextStyle(color: Colors.grey)),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Expanded(
-                                              child: IconButton(onPressed: (){
-
-                                              }, icon: const Icon(Icons.more_vert,color: Colors.grey)))
-
-                                        ],
-                                      ),
-                                      gap(hight: 16),
-                                    ],
-                                  ),
-                                ),
+                                imageUrl: provider.videoList[index].thumbnail,
+                                videoDuration:
+                                    provider.videoList[index].duration,
+                                channelImage:
+                                    provider.videoList[index].channelImage,
+                                videoTitle: provider.videoList[index].title,
+                                videoViews: provider.videoList[index].viewers,
+                                videoDate:
+                                    provider.videoList[index].dateAndTime,
+                                isBottomShow: true,
                               );
                             }
                           }),
